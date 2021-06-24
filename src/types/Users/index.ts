@@ -1,10 +1,6 @@
-import ActionTypes from 'containers/Dashboard/store/action-types';
+import ActionTypes from 'containers/Users/store/action-types';
 
 export interface FetchUsersResponse {
-  page: number;
-  per_page: number;
-  total: number;
-  total_pages: number;
   data: {
     id: number;
     email: string;
@@ -14,8 +10,8 @@ export interface FetchUsersResponse {
   }[];
 }
 
-export type DashboardGlobalState = {
-  users: {
+export type UsersGlobalState = {
+  data: {
     id: number;
     email: string;
     first_name: string;
@@ -25,14 +21,12 @@ export type DashboardGlobalState = {
 };
 
 export type UsersInterface = {
-  users: {
-    id: number;
-    email: string;
-    first_name: string;
-    last_name: string;
-    avatar: string;
-  }[];
-};
+  id: number;
+  email: string;
+  first_name: string;
+  last_name: string;
+  avatar: string;
+}[];
 
 export interface FetchUsersInterface {
   type: typeof ActionTypes.FETCH_USERS;
@@ -40,3 +34,15 @@ export interface FetchUsersInterface {
 }
 
 export type Action = FetchUsersInterface;
+
+export interface Props {
+  users: UsersInterface;
+  fetchUsers: (users: UsersInterface) => void;
+}
+
+export interface UIProps {
+  data: {
+    users: UsersInterface;
+  };
+  events: {};
+}

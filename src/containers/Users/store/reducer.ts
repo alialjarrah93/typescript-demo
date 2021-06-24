@@ -1,19 +1,19 @@
 import ActionTypes from './action-types';
-import { DashboardAction, DashboardGlobalState } from 'types';
+import { UsersAction, UsersGlobalState } from 'types';
 
-const initialState: DashboardGlobalState = {
-  users: []
+const initialState: UsersGlobalState = {
+  data: []
 };
 
 const appReducer = (
-  state: DashboardGlobalState = initialState,
-  action: DashboardAction
+  state: UsersGlobalState = initialState,
+  action: UsersAction
 ) => {
   switch (action.type) {
     case ActionTypes.FETCH_USERS:
       return {
         ...state,
-        users: action.users
+        data: action.users
       };
 
     default:

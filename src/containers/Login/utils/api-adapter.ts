@@ -5,7 +5,7 @@ import MainApiAdapter from 'utils/api-adapter';
 
 class ApiAdapter extends MainApiAdapter {
   async register(userInfo: AuthenticationInfo) {
-    const { data } = await axios.post<LoginResponse>('/register', userInfo);
+    const { data } = await axios.post<LoginResponse>('/login', userInfo);
     return data;
   }
 }

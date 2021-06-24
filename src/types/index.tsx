@@ -11,6 +11,8 @@ import {
 } from './Input';
 
 import {
+  State as AppState,
+  Props as AppProps,
   RoutesProps as AppRoutesProps,
   AuthenticateUserInterface,
   UnAuthenticateUserInterface,
@@ -38,11 +40,13 @@ import { StoreState } from './store';
 
 import {
   FetchUsersResponse,
-  DashboardGlobalState,
+  UsersGlobalState,
   FetchUsersInterface,
-  Action as DashboardAction,
-  UsersInterface
-} from './Dashboard';
+  Action as UsersAction,
+  UsersInterface,
+  Props as UsersProps,
+  UIProps as UsersUIProps
+} from './Users';
 
 export type {
   ButtonProps,
@@ -64,11 +68,15 @@ export type {
   AuthenticateUserInterface,
   UnAuthenticateUserInterface,
   AppAction,
+  AppProps,
+  AppState,
   AppGlobalState,
   StoreState,
   FetchUsersResponse,
-  DashboardGlobalState,
+  UsersGlobalState,
   FetchUsersInterface,
-  DashboardAction,
-  UsersInterface
+  UsersAction,
+  UsersInterface,
+  UsersProps,
+  UsersUIProps
 };

@@ -1,6 +1,7 @@
-import { AppGlobalState } from 'types';
+import { AppGlobalState } from '../App';
+import { UsersGlobalState } from '../Users';
 
 export interface StoreState {
   app: AppGlobalState;
-  //   dashboard: DashboardState;
+  users: UsersGlobalState;
 }

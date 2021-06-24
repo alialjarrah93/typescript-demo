@@ -1,20 +1,11 @@
 import { combineReducers } from 'redux';
 
-import appReducer, { AppState } from 'containers/App/store/reducer';
-import dashboardReducer, {
-  DashboardState
-} from 'containers/Dashboard/store/reducer';
-
-export interface StoreState {
-  app: AppState;
-  dashboard: DashboardState;
-}
+import appReducer from 'containers/App/store/reducer';
+import usersReducer from 'containers/Users/store/reducer';
 
 const mainReducer = combineReducers({
   app: appReducer,
-  dashboard: dashboardReducer
+  users: usersReducer
 });
-
-// const rootReducer = (state, action) => mainReducer(state, action);
 
 export default mainReducer;

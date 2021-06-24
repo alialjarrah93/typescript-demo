@@ -1,15 +1,18 @@
 import { ChangeEvent, Component, FormEvent, MouseEvent } from 'react';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 
 import { LoginUI } from 'pages';
 
 import { LoginProps, LoginState } from 'types';
 
 import ApiAdapter from './utils/api-adapter';
+import Actions from './store/actions';
 
 class Login extends Component<LoginProps, LoginState> {
   state = {
-    email: '',
-    password: '',
+    email: 'eve.holt@reqres.in',
+    password: 'cityslicka',
     errors: {
       email: '',
       password: ''
@@ -39,9 +42,11 @@ class Login extends Component<LoginProps, LoginState> {
 
   login = async () => {
     try {
+      const { authenticate } = this.props;
       const { email, password } = this.state;
       const api = new ApiAdapter();
-      const result = api.register({ email, password });
+      const { token } = await api.register({ email, password });
+      authenticate(token);
     } catch (error) {
       console.log(error);
     }
@@ -59,4 +64,13 @@ class Login extends Component<LoginProps, LoginState> {
   }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  const actions = new Actions();
+  return {
+    dispatch,
+    authenticate: (accessToken: string) =>
+      dispatch(actions.authenticate(accessToken))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Login);

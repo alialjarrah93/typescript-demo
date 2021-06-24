@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { Login, Register } from 'containers';
+import { Login, Register, Users } from 'containers';
 
 import { AppRoutesProps } from 'types';
 
@@ -18,14 +18,13 @@ const unauthorizedRoutes = (): JSX.Element => {
 const authorizedRoutes = (): JSX.Element => {
   return (
     <Switch>
-      {/* <Route exact path='/' component={Login} />
-        <Route path='/register' component={Register} /> */}
+      <Route exact path='/' component={Users} />
       <Redirect from='*' to='/' />
     </Switch>
   );
 };
 
-const Routes = (props: AppRoutesProps): JSX.Element => {
+const Routes: FC<AppRoutesProps> = (props: AppRoutesProps): JSX.Element => {
   const { isAuthenticated = false } = props;
   return isAuthenticated ? authorizedRoutes() : unauthorizedRoutes();
 };

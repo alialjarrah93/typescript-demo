@@ -9,6 +9,8 @@ import ApiAdapter from 'utils/api-adapter';
 import reportWebVitals from './reportWebVitals';
 import store from 'store';
 
+import './style.scss';
+
 const api = new ApiAdapter();
 api.init();
 

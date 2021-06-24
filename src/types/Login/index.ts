@@ -9,7 +9,9 @@ export interface State {
   };
 }
 
-export interface Props {}
+export interface Props {
+  authenticate: Function;
+}
 
 export interface UIProps {
   data: {

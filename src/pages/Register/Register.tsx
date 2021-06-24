@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Input, Button } from 'components';
 
@@ -12,15 +13,29 @@ const Register: FC<RegisterUIProps> = (props: RegisterUIProps) => {
 
   return (
     <div className='register'>
+      <h1>Register</h1>
       <form onSubmit={onFormSubmit}>
         <div className='field'>
-          <Input value={email} onChange={onChange} />
+          <Input
+            id='email'
+            name='email'
+            label='Email'
+            value={email}
+            onChange={onChange}
+          />
         </div>
         <div className='field'>
-          <Input value={password} onChange={onChange} />
+          <Input
+            id='password'
+            name='password'
+            label='Password'
+            value={password}
+            onChange={onChange}
+          />
         </div>
         <div className='field'>
           <Button onClick={onRegisterClick}>Register</Button>
+          <Link to='/login'>Login</Link>
         </div>
       </form>
     </div>
