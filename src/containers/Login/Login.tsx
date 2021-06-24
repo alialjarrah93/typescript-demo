@@ -40,12 +40,12 @@ class Login extends Component<LoginProps, LoginState> {
     this.login();
   };
 
-  login = async () => {
+  login = async (): Promise<void> => {
     try {
       const { authenticate } = this.props;
       const { email, password } = this.state;
       const api = new ApiAdapter();
-      const { token } = await api.register({ email, password });
+      const { token } = await api.login({ email, password });
       authenticate(token);
     } catch (error) {
       console.log(error);

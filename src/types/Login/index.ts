@@ -10,7 +10,7 @@ export interface State {
 }
 
 export interface Props {
-  authenticate: Function;
+  authenticate: (accessToken: string) => void;
 }
 
 export interface UIProps {

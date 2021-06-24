@@ -1,8 +1,12 @@
 import { ChangeEvent, Component, FormEvent, MouseEvent } from 'react';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 
 import { RegisterUI } from 'pages';
 import { RegisterProps, RegisterState } from 'types';
+
 import ApiAdapter from './utils/api-adapter';
+import Actions from './store/actions';
 
 class Register extends Component<RegisterProps, RegisterState> {
   state = {
@@ -35,11 +39,13 @@ class Register extends Component<RegisterProps, RegisterState> {
     this.register();
   };
 
-  register = async () => {
+  register = async (): Promise<void> => {
     try {
+      const { authenticate } = this.props;
       const { email, password } = this.state;
       const api = new ApiAdapter();
-      const result = api.register({ email, password });
+      const { token } = await api.register({ email, password });
+      authenticate(token);
     } catch (error) {
       console.log(error);
     }
@@ -58,4 +64,13 @@ class Register extends Component<RegisterProps, RegisterState> {
   }
 }
 
-export default Register;
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  const actions = new Actions();
+  return {
+    dispatch,
+    authenticate: (accessToken: string) =>
+      dispatch(actions.authenticate(accessToken))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Register);
